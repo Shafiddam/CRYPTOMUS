@@ -27,6 +27,7 @@ class LoginPage:
         SELECTOR_ENTER_PASSWORD = (By.CSS_SELECTOR, selector_enter_password)
         SELECTOR_RESET_CREATE = (By.XPATH, selector_reset_create)
         SELECTOR_BTN_LOGIN = (By.XPATH, selector_btn_login)
+        SELECTOR_BTN_SIGNUP = (By.XPATH, selector_btn_signup)
         SELECTOR_BTN_TONKEEPER = (By.CSS_SELECTOR, selector_btn_tonkeeper)
         SELECTOR_BTN_TELEGRAM = (By.CSS_SELECTOR, selector_btn_telegram)
         SELECTOR_MODAL_TONKEEPER = (By.CSS_SELECTOR, selector_modal_tonkeeper)
@@ -63,6 +64,9 @@ class LoginPage:
 
     def click_login(self):
         self.wait.until(EC.visibility_of_element_located(self.Locators.SELECTOR_BTN_LOGIN)).click()
+
+    def click_signup(self):
+        self.wait.until(EC.visibility_of_element_located(self.Locators.SELECTOR_BTN_SIGNUP)).click()
 
     def click_login_confirm(self):
         self.wait.until(EC.visibility_of_element_located(self.Locators.SELECTOR_LOGIN_CONFIRM)).click()
@@ -144,9 +148,11 @@ class LoginPage:
     @staticmethod
     def qr_code_tonkeeper_screenshot_decode(screenshot_path):
         """ Загрузка изображения и распознование (вход через тонкипер) """
-        image = Image.open(screenshot_path)
-        if image is None:
+        try:
+            image = Image.open(screenshot_path)
+        except Exception as e:
             print(f"Не удалось загрузить изображение из {screenshot_path}!")
+            print(f"Ошибка: {e}")
             return
 
         # Распознавание QR-кода
@@ -155,8 +161,6 @@ class LoginPage:
         for obj in decoded_objects:
             # получается ссылка вида https://app.tonkeeper.com/ton-connect?v=2&id=0e2ee91...и далее много символов
             data = obj.data.decode('utf-8')
-            # print(f"Распознанный QR-код: {data}")  # чисто проверка для себя
-            # print(data)  # чисто проверка для себя
             return data
 
     def qr_code_screenshot(self):
@@ -175,9 +179,11 @@ class LoginPage:
     @staticmethod
     def qr_code_screenshot_decode(screenshot_path):
         """ Загрузка изображения и распознование (вход по QR-коду)"""
-        image = Image.open(screenshot_path)
-        if image is None:
+        try:
+            image = Image.open(screenshot_path)
+        except Exception as e:
             print(f"Не удалось загрузить изображение из {screenshot_path}!")
+            print(f"Ошибка: {e}")
             return
 
         # Распознавание QR-кода
@@ -186,9 +192,11 @@ class LoginPage:
         for obj in decoded_objects:
             # получается ссылка вида https://app.tonkeeper.com/ton-connect?v=2&id=0e2ee91...и далее много символов
             data = obj.data.decode('utf-8')
-            # print(f"Распознанный QR-код: {data}")  # чисто проверка для себя
-            # print(data)  # чисто проверка для себя
             return data
+
+    def compare_url_dashboard(self):
+        """ сравнение url, проверяем что вошли на дашборд """
+        self.wait.until(EC.url_to_be('https://app.cryptomus.com/dashboard/'))
 
 
 class PasswordManager:
