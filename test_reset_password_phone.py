@@ -22,7 +22,7 @@ def test_reset_password_phone(driver):
         login_page.send_keys_2fa(code2fa)
         login_page.reset_confirm()
 
-        # Генерировать, сохранять и записывать пароли
+        # Генерация, сохранение и запись пароля:
         new_password = manager.generate_password(10)
         manager.save_password(email_account, new_password)
         manager.save_to_json()
