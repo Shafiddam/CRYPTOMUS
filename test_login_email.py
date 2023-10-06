@@ -9,8 +9,7 @@ def test_login_email(driver):
     Вход по почте
     Аккаунт enot_2022_001@mail.ru, для подтверждения просит только 2фа
     """
-    login_page = LoginPage(driver)  # Создание объекта LoginPage
-    # Получите пароль из словаря
+    login_page = LoginPage(driver)  
     email = "enot_2022_001@mail.ru"
     password_for_email = passwords.get(email, "DefaultPasswordIfNotFound")
     try:
