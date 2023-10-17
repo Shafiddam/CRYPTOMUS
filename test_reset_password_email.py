@@ -9,9 +9,10 @@ def test_reset_password_email(driver):
     Проверка сброса пароля при авторизации.
     Аккаунт enot_2022_016@mail.ru, для подтверждения просит только 2фа (без мыла)
     """
-    login_page = LoginPage(driver, link_login)  # Создание объекта LoginPage
-    manager = PasswordManager()  # Создаем экземпляр PasswordManager
-    email_account = 'enot_2022_016@mail.ru'  # Определение переменной
+    login_page = LoginPage(driver, link_login)  
+    manager = PasswordManager()  
+    email_account = 'enot_2022_016@mail.ru'  
+    
     try:
         login_page.open()
         login_page.click_forgot_password()
@@ -31,6 +32,7 @@ def test_reset_password_email(driver):
 
         login_page.send_keys_new_password(new_password)
         login_page.reset_create()
+
     except Exception as e:
         pytest.fail(f"ERROR: {str(e)}")
     finally:
