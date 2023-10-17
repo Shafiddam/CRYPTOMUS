@@ -106,6 +106,9 @@ class DashboardPage(BasePage):
         SMALL_MAN = (By.CSS_SELECTOR, small_man)
         SELECT_SETTINGS = (By.XPATH , select_settings)
         PROMO_CODE = (By.XPATH , promo_code)
+        BTN_KYC = (By.XPATH , btn_kyc)
+        BTN_VERIFICATION = (By.XPATH , btn_verification)
+        PROMO_CODE_ACTIVATE = (By.XPATH , promo_code_activate)
         SELECT_CURRENCY = (By.XPATH , select_currency)
         ADD_COIN = (By.CSS_SELECTOR , add_coin)
         AUTO_WITHDRAWAL = (By.XPATH , auto_withdrawal)
@@ -141,6 +144,7 @@ class DashboardPage(BasePage):
         INVOICE_CURRENCY_IN_PAY = (By.XPATH, invoice_currency_in_pay)
         INVOICE_NETWORK_IN_PAY = (By.XPATH, invoice_network_in_pay)
         INVOICE_WALLET_ADDRESS_IN_PAY = (By.XPATH, invoice_wallet_address_in_pay)
+        INVOICE_ANY_WALLET_ADDRESS_IN_PAY = (By.XPATH, invoice_any_wallet_address_in_pay)
         WALLET_CONNECT_IN_PAY = (By.XPATH, wallet_connect_in_pay)
         PAY_VIA_FIAT = (By.XPATH, pay_via_fiat)
         BTN_PAY_IN_PAY = (By.XPATH, btn_pay_in_pay)
@@ -378,6 +382,7 @@ class DashboardPage(BasePage):
     def insert_promocode(self, code):
         element = self.wait.until(EC.visibility_of_element_located(self.Locators.INSERT_PROMOCODE))
         element.click()
+        element.clear()
         element.send_keys(code)
 
     def confirm_new_password(self, password):
@@ -457,6 +462,22 @@ class DashboardPage(BasePage):
     def find_notistack_snackbar(self):
         try:
             return self.wait.until(EC.presence_of_element_located(self.Locators.RM_MERCHANT_NOTISTACK_SNACKBAR))
+        except TimeoutException:
+            return False
+
+    def find_text_in_kyc_verification(self, status):
+        locator = (By.XPATH, f"//div[contains(@class, 'Verification_status') and text()='{status}']")
+        try:
+            element = self.wait.until(EC.visibility_of_element_located(locator))
+            return element
+        except TimeoutException:
+            return False
+
+    def check_btn_is_disabled(self):
+        locator = (By.XPATH, "//button[contains(@class, 'btn secondary') and @disabled]")
+        try:
+            element = self.wait.until(EC.presence_of_element_located(locator))
+            return element
         except TimeoutException:
             return False
 
@@ -618,6 +639,15 @@ class DashboardPage(BasePage):
     def click_promo_code(self):
         self.wait.until(EC.visibility_of_element_located(self.Locators.PROMO_CODE)).click()
 
+    def click_btn_kyc(self):
+        self.wait.until(EC.visibility_of_element_located(self.Locators.BTN_KYC)).click()
+
+    def click_btn_verification(self):
+        self.wait.until(EC.visibility_of_element_located(self.Locators.BTN_VERIFICATION)).click()
+
+    def click_activate(self):
+        self.wait.until(EC.visibility_of_element_located(self.Locators.PROMO_CODE_ACTIVATE)).click()
+
     def click_currency(self):
         self.wait.until(EC.visibility_of_element_located(self.Locators.SELECT_CURRENCY)).click()
 
@@ -662,6 +692,14 @@ class DashboardPage(BasePage):
         try:
             merchant_locator = (By.XPATH, f"//*[contains(text(), '{merchant_name}')]")
             element = self.wait.until(EC.visibility_of_element_located(merchant_locator))
+            return element
+        except TimeoutException:
+            return None
+
+    def find_error_message_incorrect_promocode(self, message):
+        try:
+            locator = (By.XPATH, f"//span[@class='error__description' and text() = '{message}']")
+            element = self.wait.until(EC.visibility_of_element_located(locator))
             return element
         except TimeoutException:
             return None
@@ -808,9 +846,9 @@ class DashboardPage(BasePage):
         element = self.wait.until(EC.visibility_of_element_located(self.Locators.INPUT_SEARCH_FIND_CURRENCY))
         element.click()
         element.send_keys(currency)
-        sleep(1)
+        sleep(2)
         self.wait.until(EC.visibility_of_element_located(currency_text__name_locator)).click()
-        sleep(1)
+        sleep(2)
 
     def insert_currency_and_select_in_manual_convert(self, currency):
         """ находим поиск и вставляем объявленный ранее currency """
@@ -967,6 +1005,19 @@ class DashboardPage(BasePage):
         self.wait.until(EC.visibility_of_element_located(self.Locators.INPUT_SEARCH_FIND_CURRENCY)).send_keys('USDT')
         sleep(1)
         self.wait.until(EC.visibility_of_element_located(self.Locators.USDT_IN_STATIC_WALLET)).click()
+        sleep(1)
+
+    def insert_currency_and_select_in_static_wallet(self, currency):
+        """ находим поиск и вставляем CURRENCY при создании статик-валлета """
+        locator = (By.XPATH, f"//span[@class='item__name'][text()='{currency}']")
+        self.wait.until(EC.visibility_of_element_located(self.Locators.BTN_SELECT_CURRENCY_INVOICE)).click()
+        sleep(2)
+        element = self.wait.until(EC.visibility_of_element_located(self.Locators.INPUT_SEARCH_FIND_CURRENCY))
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        element.click()
+        element.send_keys(currency)
+        sleep(1)
+        self.wait.until(EC.visibility_of_element_located(locator)).click()
         sleep(1)
 
     def insert_currency_and_select_in_add_address(self, currency):
@@ -1156,6 +1207,17 @@ class DashboardPage(BasePage):
         assert usdt_element is not None, "USDT not found on the page!"
         assert polygon_element is not None, "POLYGON not found on the page!"
 
+    def check_currency_network_present(self, currency, network):
+        currency_locator = f"//div[contains(@class, 'payment-details-wallet__subheading')]//span[text()='{currency}']"
+        network_locator = \
+            f"//div[contains(@class, 'payment-details-wallet__subheading')]//span[text()='Network · {network}   ']"
+
+        crypto_element = self.wait.until(EC.presence_of_element_located((By.XPATH, currency_locator)))
+        network_element = self.wait.until(EC.presence_of_element_located((By.XPATH, network_locator)))
+
+        assert crypto_element is not None, f"{currency} not found on the page!"
+        assert network_element is not None, f"{network} not found on the page!"
+
     def check_amount_currency_name(self, amount, currency, name):
         """ Проверка наличия amount , currency, name на пейформе """
         amount_locator = f"//span[contains(@class, 'payment-details__amount') and text()='{amount}']"
@@ -1334,13 +1396,19 @@ class DashboardPage(BasePage):
         assert crypta_element is not None, f"{crypta} not found on the page!"
         assert fiat_element is not None, f"{fiat} not found on the page!"
 
-    def check_fiat_in_pay_present(self, amount, fiat):
-        """ поиск fiat amount в пейформе """
-        fiat_locator = f"//div[contains(@class, 'subheading__currency')]" \
-                       f"//span[text()='{amount}']/following-sibling::span[text()='{fiat}']"
-
-        fiat_element = self.wait.until(EC.presence_of_element_located((By.XPATH, fiat_locator)))
-        assert fiat_element is not None, f"{amount} {fiat} not found on the page!"
+    def check_fiat_in_pay_present(self, amount, currency):
+        """ поиск amount и currency в пейформе """
+        amount_locator = f"//div[@class='subheading__currency']/span[text()='{amount}']"
+        currency_locator = f"//div[@class='subheading__currency']/span[text()='{currency}']"
+        try:
+            amount_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, amount_locator)))
+            currency_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, currency_locator)))
+            assert amount_element, f"{amount} not found on the page!"
+            assert currency_element, f"{currency} not found on the page!"
+            return True
+        except TimeoutException:
+            print('TimeoutException occurred')
+            return False
 
     def check_fiat_crypto_network_in_pay_present(self, crypta, fiat, network):
         """ поиск fiat amount, currency amount и network в пейформе """
@@ -1450,13 +1518,40 @@ class DashboardPage(BasePage):
         try:
             amount_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, amount_locator)))
             currency_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, currency_locator)))
-
             assert amount_element, f"{amount} not found on the page!"
             assert currency_element, f"{currency} not found on the page!"
-
             return True
         except TimeoutException:
+            print('TimeoutException occurred')
             return False
+
+    def check_any_amount_currency_in_pay(self, currency):
+        """ поиск любой суммы(так как они меняются в цикле и currency в пейформе """
+        amount_locator = "//span[@class='payment-details__amount']"
+        currency_locator = f"//span[@class='payment-details__amount'][text()='{currency}']"
+        try:
+            amount_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, amount_locator)))
+            currency_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, currency_locator)))
+            assert amount_element, "Сумма не найдена на странице!"
+            assert currency_element, f"{currency} not found on the page!"
+            return True
+        except TimeoutException:
+            print('TimeoutException occurred')
+            return False
+
+    # def check_amount_fiat_in_pay(self, amount, currency):
+    #     """ поиск amount и currency в пейформе """
+    #     amount_locator = f"//div[@class='subheading__currency']/span[text()='{amount}']"
+    #     currency_locator = f"//div[@class='subheading__currency']/span[text()='{currency}']"
+    #     try:
+    #         amount_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, amount_locator)))
+    #         currency_element = self.wait.until(EC.visibility_of_element_located((By.XPATH, currency_locator)))
+    #         assert amount_element, f"{amount} not found on the page!"
+    #         assert currency_element, f"{currency} not found on the page!"
+    #         return True
+    #     except TimeoutException:
+    #         print('TimeoutException occurred')
+    #         return False
 
     def check_link_and_button(self):
         # Локатор для ссылки, в которой содержится кнопка
@@ -1530,6 +1625,15 @@ class DashboardPage(BasePage):
         except TimeoutException:
             return None
 
+    def find_any_wallet_address_in_pay(self):
+        """ поиск ЛЮБОГО wallet_address в пейформе """
+        try:
+            element = self.wait.until(EC.visibility_of_element_located(self.Locators.INVOICE_ANY_WALLET_ADDRESS_IN_PAY))
+            wallet_address_in_pay = element.text
+            return wallet_address_in_pay
+        except TimeoutException:
+            return None
+
     def find_wallet_connect_in_pay(self):
         """ поиск КЛИКАБЕЛЬНОЙ кнопки "wallet_connect" в пейформе """
         try:
@@ -1547,17 +1651,33 @@ class DashboardPage(BasePage):
             return None
 
     def find_pay_via_fiat_in_pay(self):
-        """ поиск pay_via_fiat в пейформе """
+        """ поиск КЛИКАБЕЛЬНОЙ pay_via_fiat в пейформе """
         try:
             element = self.wait.until(EC.element_to_be_clickable(self.Locators.PAY_VIA_FIAT))
             return element
         except TimeoutException:
             return None
 
+    def find_pay_via_fiat_in_pay_not_clickable(self):
+        """ поиск НЕкликабельной кнопки "pay_via_fiat" в пейформе """
+        try:
+            element = self.wait.until(EC.presence_of_element_located(self.Locators.PAY_VIA_FIAT))
+            return element
+        except TimeoutException:
+            return None
+
     def find_button_pay_in_pay(self):
-        """ поиск кнопки Pay в пейформе и проверка ее кликабельности """
+        """ поиск кнопки КЛИКАБЕЛЬНОЙ Pay в пейформе и проверка ее кликабельности """
         try:
             element = self.wait.until(EC.element_to_be_clickable(self.Locators.BTN_PAY_IN_PAY))
+            return element
+        except TimeoutException:
+            return None
+
+    def find_button_pay_in_pay_not_clickable(self):
+        """ поиск НЕкликабельной кнопки "button_pay_in_pay" в пейформе """
+        try:
+            element = self.wait.until(EC.presence_of_element_located(self.Locators.BTN_PAY_IN_PAY))
             return element
         except TimeoutException:
             return None
