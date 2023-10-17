@@ -5,8 +5,7 @@ from time import sleep
 def test_convert_market_20_doge_to_btc(login_and_prepare):
     """ Аккаунт enot_2022_001@mail.ru. Конвертируем 20 DOGE в BTC.
     Нюанс: сначала кликаем на кнопку ShowMore, ищем DOGE и вытаскиваем текст(сумму) из элемента.
-    И дальше если значение больше 20, то делаем try, иначе просто выводим что "минимум для конверта 20 DOGE"
-    Ожидаемые результаты:  """
+    И дальше если значение больше 20, то делаем try, иначе просто выводим что 'минимум для конверта 20 DOGE' """
 
     driver, dashboard_page = login_and_prepare  # фикстура для авторизации, прописана в conftest.py
     crypta_from = 'DOGE'
@@ -34,8 +33,6 @@ def test_convert_market_20_doge_to_btc(login_and_prepare):
         element = dashboard_page.find_error_notistack_snackbar()
         assert not element, "Внутренняя ошибка 'We can't create an order now. Please, try again later'"
         assert not dashboard_page.is_error_snackbar_present(), "Ошибка: появилась плашка с ошибкой!"
-
-        # Проверки на суммы с бинанс:
 
     except Exception as e:
         pytest.fail(f"ERROR: {str(e)}")
