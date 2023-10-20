@@ -8,10 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]  # Можно указать версии Python, на которых вы хотите прогонять тесты
+        python-version: [3.10]  # Можно указать версии Python, на которых вы хотите прогонять тесты
 
     steps:
     - uses: actions/checkout@v2  # Это действие проверяет ваш репозиторий
@@ -28,4 +28,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest  # Запустите свои тесты с помощью pytest или другого инструмента
+        pytest test_login_email.py # Запустите свои тесты с помощью pytest или другого инструмента
