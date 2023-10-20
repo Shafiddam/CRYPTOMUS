@@ -2,9 +2,9 @@ from selenium import webdriver
 import pytest
 from selenium.webdriver.chrome.options import Options  # для запуска браузера в безоконном режиме; на английском
 from selenium.webdriver.chrome.service import Service
-from .pages.login_page import LoginPage
-from .pages.dashboard_page import DashboardPage
-from .data.data import *
+from pages.login_page import LoginPage
+from pages.dashboard_page import DashboardPage
+from data.data import *
 import os
 
 
