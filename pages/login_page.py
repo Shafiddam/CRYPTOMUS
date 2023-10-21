@@ -12,9 +12,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, date
 
-from base_page import BasePage
-from dashboard_page import DashboardPage
-from data.data import *
+#from base_page import BasePage
+from CRYPTOMUS/pages/base_page import BasePage
+from CRYPTOMUS/pages/dashboard_page import DashboardPage
+#from data.data import *
+from CRYPTOMUS/data/data import *
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
 counter_file_path = os.path.join(current_directory, '..', 'data', 'counter.txt')
