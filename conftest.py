@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options  # для запуска �
 from selenium.webdriver.chrome.service import Service
 from .pages.login_page import LoginPage
 from .pages.dashboard_page import DashboardPage
-from ..data.data import *
+from .data.data import *
 import os
 
 
