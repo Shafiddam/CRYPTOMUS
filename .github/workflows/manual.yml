@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: [3.10]  # Можно указать версии Python, на которых вы хотите прогонять тесты
+        python-version: [3.9]  # Можно указать версии Python, на которых вы хотите прогонять тесты
 
     steps:
     - uses: actions/checkout@v2  # Это действие проверяет ваш репозиторий
