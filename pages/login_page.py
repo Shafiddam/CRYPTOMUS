@@ -16,7 +16,7 @@ from datetime import datetime, date
 from .pages.base_page import BasePage
 from .pages.dashboard_page import DashboardPage
 #from data.data import *
-from data.data import *
+from ..data.data import *
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
 counter_file_path = os.path.join(current_directory, '..', 'data', 'counter.txt')
