@@ -4,7 +4,7 @@ from time import sleep
 import pyotp
 from selenium.webdriver.support.wait import WebDriverWait
 
-from data.secret_keys import secret_keys
+from ..data.secret_keys import secret_keys
 
 
 class BasePage:
