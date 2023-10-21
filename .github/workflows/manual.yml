@@ -35,11 +35,11 @@ jobs:
     # - name: Setup Chrome and ChromeDriver
       # uses: browser-actions/setup-chrome@latest
 
-    - name: Display Chrome version
-      run: google-chrome-stable --version
+    # - name: Display Chrome version
+    #   run: google-chrome-stable --version
 
-    - name: Display ChromeDriver version
-      run: chromedriver --version
+    # - name: Display ChromeDriver version
+    #   run: chromedriver --version
 
     - run: echo "CHROMEWEBDRIVER=${{ env.CHROMEWEBDRIVER }}" >> $GITHUB_ENV
 
