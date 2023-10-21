@@ -20,8 +20,8 @@ def driver():
     # driver_path = "c:\\Chromedriver\\chromedriver.exe"
     # service = Service(driver_path)  # Создание объекта Service с указанием пути к драйверу
     # Создание экземпляра браузерного драйвера с использованием объекта Service
-    #driver = webdriver.Chrome(options=chrome_options)
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
     driver.maximize_window()  
     yield driver
     driver.quit()
@@ -41,8 +41,8 @@ def login_and_prepare():
     # chrome_options.add_argument("--headless")
     #driver_path = "c:\\Chromedriver\\chromedriver.exe"
     #service = Service(driver_path)
-    #driver = webdriver.Chrome(options=chrome_options)
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
     driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
@@ -61,8 +61,8 @@ def login_and_prepare_settings():
     # chrome_options.add_argument("--headless")
     # driver_path = "c:\\Chromedriver\\chromedriver.exe"
     # service = Service(driver_path)
-    #driver = webdriver.Chrome(options=chrome_options)
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
     driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
@@ -81,8 +81,8 @@ def login_and_prepare_enot_2022_015_mail_ru():
     # chrome_options.add_argument("--headless")
     #driver_path = "c:\\Chromedriver\\chromedriver.exe"
     #service = Service(driver_path)
-    #driver = webdriver.Chrome(options=chrome_options)
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
     driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
@@ -118,8 +118,8 @@ def login_and_prepare_enot_2022_018_mail_ru():
     # chrome_options.add_argument("--headless")
     # driver_path = "c:\\Chromedriver\\chromedriver.exe"
     # service = Service(driver_path)
-    #driver = webdriver.Chrome(options=chrome_options)
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
     driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
