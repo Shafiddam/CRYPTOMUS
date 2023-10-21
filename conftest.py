@@ -16,14 +16,12 @@ def driver():
     """
     chrome_options = Options()
     chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
-    # chrome_options.add_argument("--headless")
-    # driver_path = "c:\\Chromedriver\\chromedriver.exe"
+    chrome_options.add_argument("--headless")
     # service = Service(driver_path)  # Создание объекта Service с указанием пути к драйверу
-    # Создание экземпляра браузерного драйвера с использованием объекта Service
     service = Service(os.environ.get("CHROMEWEBDRIVER"))
     driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    driver.maximize_window()  
+    #driver.maximize_window()  
     yield driver
     driver.quit()
 
@@ -39,13 +37,12 @@ def login_page(driver, link_prod='https://app.cryptomus.com/login'):
 def login_and_prepare():
     chrome_options = Options()
     chrome_options.add_argument("--lang=en-US")
-    # chrome_options.add_argument("--headless")
-    #driver_path = "c:\\Chromedriver\\chromedriver.exe"
+    chrome_options.add_argument("--headless")
     #service = Service(driver_path)
     service = Service(os.environ.get("CHROMEWEBDRIVER"))
     driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    driver.maximize_window()
+    #driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_001@mail.ru"
@@ -60,13 +57,12 @@ def login_and_prepare():
 def login_and_prepare_settings():
     chrome_options = Options()
     chrome_options.add_argument("--lang=en-US")
-    # chrome_options.add_argument("--headless")
-    # driver_path = "c:\\Chromedriver\\chromedriver.exe"
+    chrome_options.add_argument("--headless")
     # service = Service(driver_path)
     service = Service(os.environ.get("CHROMEWEBDRIVER"))
     driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    driver.maximize_window()
+    #driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_001@mail.ru"
@@ -81,13 +77,12 @@ def login_and_prepare_settings():
 def login_and_prepare_enot_2022_015_mail_ru():
     chrome_options = Options()
     chrome_options.add_argument("--lang=en-US")
-    # chrome_options.add_argument("--headless")
-    #driver_path = "c:\\Chromedriver\\chromedriver.exe"
+    chrome_options.add_argument("--headless")
     #service = Service(driver_path)
     service = Service(os.environ.get("CHROMEWEBDRIVER"))
     driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    driver.maximize_window()
+    #driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_015@mail.ru"
@@ -119,13 +114,12 @@ def take_screenshot(driver, screenshot_name, screenshots_folder="screenshots"):
 def login_and_prepare_enot_2022_018_mail_ru():
     chrome_options = Options()
     chrome_options.add_argument("--lang=en-US")
-    # chrome_options.add_argument("--headless")
-    # driver_path = "c:\\Chromedriver\\chromedriver.exe"
+    chrome_options.add_argument("--headless")
     # service = Service(driver_path)
     service = Service(os.environ.get("CHROMEWEBDRIVER"))
     driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    driver.maximize_window()
+    #driver.maximize_window()
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_018@mail.ru"
