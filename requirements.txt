@@ -8,3 +8,5 @@ Requests==2.31.0
 selenium==4.10.0
 pyautogui==0.9.52 
 opencv-python
+webdriver_manager==3.5.0
+
