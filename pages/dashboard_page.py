@@ -17,9 +17,9 @@ from PIL import Image, ImageEnhance, ImageFilter
 from pyzbar.pyzbar import decode
 import cv2
 
-from .base_page import BasePage
-from ..data.data import *
-from ..data.secret_keys import secret_keys
+from base_page import BasePage
+from data.data import *
+from data.secret_keys import secret_keys
 
 
 class DashboardPage(BasePage):
