@@ -13,8 +13,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, date
 
 #from base_page import BasePage
-from .pages.base_page import BasePage
-from .pages.dashboard_page import DashboardPage
+from .base_page import BasePage
+from .dashboard_page import DashboardPage
 #from data.data import *
 from ..data.data import *
 
