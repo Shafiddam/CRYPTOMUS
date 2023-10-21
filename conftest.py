@@ -15,11 +15,8 @@ def driver():
     chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--log-level=DEBUG")
-    #service = Service(os.environ.get("CHROMEWEBDRIVER"))
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
-    #driver = webdriver.Chrome(options=chrome_options)
-    chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
-    driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
+    service = Service(os.environ.get("CHROMEWEBDRIVER"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver.maximize_window()  
     yield driver
     driver.quit()
