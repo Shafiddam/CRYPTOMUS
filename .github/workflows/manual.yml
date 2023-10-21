@@ -29,17 +29,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  
     
-    - name: Setup ChromeDriver
-      uses: nanasess/setup-chromedriver@master
+    # - name: Setup ChromeDriver
+      # uses: nanasess/setup-chromedriver@master
  
-    # - name: Setup Chrome and ChromeDriver
-      # uses: browser-actions/setup-chrome@latest
-
-    # - name: Display Chrome version
-    #   run: google-chrome-stable --version
-
-    # - name: Display ChromeDriver version
-    #   run: chromedriver --version
+    - name: Setup Chrome and ChromeDriver
+      uses: browser-actions/setup-chrome@latest
 
     - run: echo "CHROMEWEBDRIVER=${{ env.CHROMEWEBDRIVER }}" >> $GITHUB_ENV
 
