@@ -11,18 +11,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture
 def driver():
-    """
-    Функция для настройки браузера
-    """
     chrome_options = Options()
     chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
     chrome_options.add_argument("--headless")
-    # service = Service(driver_path)  
-    #service = Service(os.environ.get("CHROMEWEBDRIVER"))
-    chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
-    driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
-    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
+    service = Service(os.environ.get("CHROMEWEBDRIVER"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    #chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
+    #driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
     #driver.maximize_window()  
     yield driver
     driver.quit()
@@ -38,15 +33,13 @@ def login_page(driver, link_prod='https://app.cryptomus.com/login'):
 @pytest.fixture
 def login_and_prepare():
     chrome_options = Options()
-    chrome_options.add_argument("--lang=en-US")
+    chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
     chrome_options.add_argument("--headless")
-    #service = Service(driver_path)
-    #service = Service(os.environ.get("CHROMEWEBDRIVER"))
-    chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
-    driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
-    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    #driver.maximize_window()
+    service = Service(os.environ.get("CHROMEWEBDRIVER"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    #chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
+    #driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
+    #driver.maximize_window()  
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_001@mail.ru"
@@ -60,15 +53,13 @@ def login_and_prepare():
 @pytest.fixture
 def login_and_prepare_settings():
     chrome_options = Options()
-    chrome_options.add_argument("--lang=en-US")
+    chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
     chrome_options.add_argument("--headless")
-    # service = Service(driver_path)
-    #service = Service(os.environ.get("CHROMEWEBDRIVER"))
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
-    chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
-    driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
-    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    #driver.maximize_window()
+    service = Service(os.environ.get("CHROMEWEBDRIVER"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    #chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
+    #driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
+    #driver.maximize_window()  
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_001@mail.ru"
@@ -82,15 +73,13 @@ def login_and_prepare_settings():
 @pytest.fixture(scope="module")
 def login_and_prepare_enot_2022_015_mail_ru():
     chrome_options = Options()
-    chrome_options.add_argument("--lang=en-US")
+    chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
     chrome_options.add_argument("--headless")
-    #service = Service(driver_path)
-    #service = Service(os.environ.get("CHROMEWEBDRIVER"))
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
-    chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
-    driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
-    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    #driver.maximize_window()
+    service = Service(os.environ.get("CHROMEWEBDRIVER"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    #chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
+    #driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
+    #driver.maximize_window()  
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_015@mail.ru"
@@ -121,15 +110,13 @@ def take_screenshot(driver, screenshot_name, screenshots_folder="screenshots"):
 @pytest.fixture
 def login_and_prepare_enot_2022_018_mail_ru():
     chrome_options = Options()
-    chrome_options.add_argument("--lang=en-US")
+    chrome_options.add_argument("--lang=en-US")  # Установите желаемый язык, например, en-US для английского
     chrome_options.add_argument("--headless")
-    # service = Service(driver_path)
-    #service = Service(os.environ.get("CHROMEWEBDRIVER"))
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
-    chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
-    driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
-    #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEWEBDRIVER"), options=chrome_options)
-    #driver.maximize_window()
+    service = Service(os.environ.get("CHROMEWEBDRIVER"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    #chromedriver_path = os.environ.get("CHROMEWEBDRIVER")
+    #driver = webdriver.Chrome(executable_path=chromedriver_path, options=chrome_options)
+    #driver.maximize_window()  
     login_page = LoginPage(driver)
     dashboard_page = DashboardPage(driver)
     email = "enot_2022_018@mail.ru"
