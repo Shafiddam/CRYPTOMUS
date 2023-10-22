@@ -32,7 +32,7 @@ jobs:
     - name: Setup ChromeDriver
       uses: nanasess/setup-chromedriver@master
       with: 
-        chromedriver-version: '118.0.5993.71'
+        chromedriver-version: '118.0.5993.70'
         
     - name: Install Chocolatey
       run: |
