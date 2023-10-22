@@ -40,8 +40,8 @@ jobs:
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
         iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-    - name: google-chrome version
-      run: google-chrome --version
+    - name: Display Google Chrome version
+      run: C:\\hostedtoolcache\\windows\\chromium\\latest\\x64\\chrome.exe --version
       
     # - name: Setup Chrome and ChromeDriver
       # uses: browser-actions/setup-chrome@latest
