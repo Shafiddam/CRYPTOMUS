@@ -43,8 +43,8 @@ jobs:
     # - name: Display Google Chrome version
       # run: C:\hostedtoolcache\windows\chromium\latest\x64\chrome.exe --version
       
-    # - name: Setup Chrome and ChromeDriver
-      # uses: browser-actions/setup-chrome@latest
+    - name: Setup Chrome and ChromeDriver
+      uses: browser-actions/setup-chrome@latest
        
     - run: echo "CHROMEWEBDRIVER=${{ env.CHROMEWEBDRIVER }}" >> $GITHUB_ENV
 
