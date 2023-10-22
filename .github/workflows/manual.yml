@@ -32,7 +32,7 @@ jobs:
     - name: Setup ChromeDriver
       uses: nanasess/setup-chromedriver@master
       with: 
-        chromedriver-version: '115'
+        chromedriver-version: '118.0.5993.71'
         
     - name: Install Chocolatey
       run: |
@@ -40,14 +40,9 @@ jobs:
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
         iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-    - name: Install Google Chrome 115
-      run: choco install googlechrome --version=115.0
-
     # - name: Setup Chrome and ChromeDriver
       # uses: browser-actions/setup-chrome@latest
-      # with: 
-        # chrome-version: '115'
-
+       
     - run: echo "CHROMEWEBDRIVER=${{ env.CHROMEWEBDRIVER }}" >> $GITHUB_ENV
 
     - name: Run tests
