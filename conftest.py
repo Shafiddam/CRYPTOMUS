@@ -6,7 +6,6 @@ from .pages.login_page import LoginPage
 from .pages.dashboard_page import DashboardPage
 from .data.data import *
 import os
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture
