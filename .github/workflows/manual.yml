@@ -29,10 +29,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  
     
-    # - name: Setup ChromeDriver
-    #   uses: nanasess/setup-chromedriver@master
-    #   with: 
-    #     chromedriver-version: '118.0.5993.70'
+    - name: Setup ChromeDriver
+      uses: nanasess/setup-chromedriver@master
+      with: 
+        chromedriver-version: '118.0.5993.70'
         
     # - name: Install Chocolatey
     #   run: |
