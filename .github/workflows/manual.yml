@@ -43,7 +43,7 @@ jobs:
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1
       with:
-        chrome-version: '118.0.5993.89'
+        chrome-version: '118.0.5993.70'
 
     - run: echo "CHROMEWEBDRIVER=${{ env.CHROMEWEBDRIVER }}" >> $GITHUB_ENV
 
