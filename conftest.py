@@ -9,8 +9,6 @@ import os
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
-
 @pytest.fixture
 def driver():
     chrome_options = Options()
