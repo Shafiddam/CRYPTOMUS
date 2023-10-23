@@ -29,21 +29,21 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  
     
-    - name: Setup ChromeDriver
-      uses: nanasess/setup-chromedriver@master
-      with: 
-        chromedriver-version: '118.0.5993.70'
+    # - name: Setup ChromeDriver
+    #   uses: nanasess/setup-chromedriver@master
+    #   with: 
+    #     chromedriver-version: '118.0.5993.70'
         
-    - name: Install Chocolatey
-      run: |
-        Set-ExecutionPolicy Bypass -Scope Process -Force;
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
-        iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    # - name: Install Chocolatey
+    #   run: |
+    #     Set-ExecutionPolicy Bypass -Scope Process -Force;
+    #     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+    #     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: '118.0.5993.70'
+    # - name: Setup Chrome
+    #   uses: browser-actions/setup-chrome@v1
+    #   with:
+    #     chrome-version: '118.0.5993.70'
 
     - run: echo "CHROMEWEBDRIVER=${{ env.CHROMEWEBDRIVER }}" >> $GITHUB_ENV
 
