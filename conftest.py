@@ -19,7 +19,7 @@ def driver():
     chrome_options.add_argument("--log-level=DEBUG")
     service = Service(os.environ.get("CHROMEWEBDRIVER"))
     # driver = webdriver.Chrome(service=service, options=chrome_options)
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    driver = webdriver.Chrome(ChromeDriverManager(version="118.0.5993.70").install())
     #driver.maximize_window()  
     yield driver
     driver.quit()
