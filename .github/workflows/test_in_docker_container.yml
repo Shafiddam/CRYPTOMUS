@@ -1,0 +1,20 @@
+name: Run Tests in Docker Container_Manual Workflow
+
+on:
+  workflow_dispatch:
+  # push:
+    # branches:
+      # - main
+
+jobs:
+  build:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run tests inside Docker container
+      run: |
+        docker pull shafiddam/shafiddam_21_10_2023:latest
+        docker run -v ${{ github.workspace }}:/app shafiddam/shafiddam_21_10_2023 pytest /app/test_login_email.py
