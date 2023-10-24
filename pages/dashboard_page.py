@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from PIL import Image, ImageEnhance, ImageFilter
 from pyzbar.pyzbar import decode
-import cv2
+# import cv2
 
 from .base_page import BasePage
 from ..data.data import *
