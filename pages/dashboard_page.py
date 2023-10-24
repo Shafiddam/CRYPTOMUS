@@ -6,7 +6,7 @@ from time import sleep
 from datetime import datetime
 import re
 
-import pyautogui
+# import pyautogui
 import pyotp
 import pytest
 from selenium.common import TimeoutException, NoSuchElementException
