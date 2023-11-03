@@ -18,7 +18,7 @@ btc_015 = 'bc1q9xysrp22zx2575af5quluxnxr67448c029s56a'
 usdt_trust_wallet = '0x6B6dD11c39f7F247Bd1FFE9F3B2a6246C44e248C'
 # endregion
 
-secret_key_001 = 'Y3FUI6TI5TGVQ62D'; account_001 = 'enot_2022_001@mail.ru'
+secret_key_001 = 'WWWUI6TI5TGVQ62D'; account_001 = 'enot_2022_001@mail.ru'
 ##################
 link_prod = 'https://app.cryptomus.com/dashboard/'
 link_signup = 'https://app.cryptomus.com/signup'
@@ -26,14 +26,14 @@ link_login = 'https://app.cryptomus.com/login'
 link_prod_personal = 'https://app.cryptomus.com/dashboard/'
 link_prod_business = 'https://app.cryptomus.com/dashboard/business/'
 link_prod_p2p = 'https://app.cryptomus.com/dashboard/p2p-balance/'
-phone_number = '89058308055'
-bot_token = ''  # токен бота в телеграм
-chat_id = ''  # мой Chat ID в телеграм
+phone_number = '89058308050'
+bot_token = '5983124763:AAG_SGu2XXGsp5ueviwaTFydQl_klsb'  # токен бота в телеграм
+chat_id = '1714325000'  # мой Chat ID в телеграм
 
-password_for_new_email = ''  # пусть будет такой новый пароль
+password_for_new_email = 'Enot!!!!!!23'  # пусть будет такой новый пароль
 new_password_for_change_password = 'Change!psw!2023'  # пусть будет такой новый пароль
 passwords = {
-    "enot_2022_001@mail.ru": "Enot!@2022"
+    "enot_2022_001@mail.ru": "Enot!!!!!!22"
 }
 # Словарь для соответствия кода валюты и символа
 currency_symbols = {
